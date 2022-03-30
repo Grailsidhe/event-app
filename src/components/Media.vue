@@ -81,9 +81,6 @@ export default class Media extends Vue {
 
 .media > * {
   width: 100%;
-}
-
-.media > * {
   margin-bottom: 10px;
 }
 

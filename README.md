@@ -34,7 +34,7 @@ This was my second internship project, as I learned VueJs and practiced Typescri
 
 - VueJs
 - VuexJs
-- VueTypescript
+- Typescript
 - HTML/CSS/Javascript
 
 <img width="438" alt="3" src="https://user-images.githubusercontent.com/78496780/160887363-8f19b99f-7fcc-451f-883c-4e885e1f2845.png">
