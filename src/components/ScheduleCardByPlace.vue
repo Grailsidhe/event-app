@@ -4,12 +4,18 @@
       <h5>{{ hour }}</h5>
       <h3>{{ title }}</h3>
     </div>
-    <div class="card-img-container" :style="styles"></div>
+    <img
+      class="card-img-container"
+      :src="this.image"
+      :alt="title"
+      :style="styles"
+    />
   </section>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import * as data from "../data/data.json";
 
 @Options({
   props: {
@@ -18,15 +24,34 @@ import { Options, Vue } from "vue-class-component";
     image: String,
     id: String,
   },
+  methods: {
+    imageValue: function (value: string) {
+      const direction =
+        value === "x"
+          ? this.transformedImage[0]?.square.x
+          : this.transformedImage[0]?.square.y;
+      return typeof direction != undefined ? direction * 100 + "%" : "100%";
+    },
+  },
+  computed: {
+    styles() {
+      return {
+        "object-position": `${this.imageValue("x")} ${this.imageValue("y")}`,
+      };
+    },
+  },
 })
 export default class ScheduleCardByPlace extends Vue {
   hour!: string;
   title!: string;
   image!: string;
   id!: string;
-  styles = {
-    "background-image": `url(${this.image})`,
-  };
+  img =
+    // @ts-ignore
+    typeof this.image === "string" && this.image.slice(this.image.length - 24);
+  transformedImage = data.data.transformedImages.filter((images: any) =>
+    images.id.includes(this.img)
+  );
 }
 </script>
 
@@ -82,12 +107,10 @@ h5 {
 }
 
 .card-img-container {
+  object-fit: cover;
   height: 50px;
   width: 50px;
   margin: 10px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 .round .card-img-container-round {

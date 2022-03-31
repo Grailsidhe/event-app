@@ -1,6 +1,6 @@
 <template>
   <section class="eg-img-container">
-    <img :src="image" alt="" />
+    <img :src="image" alt="" :style="styles" />
     <span>{{ title }}</span>
   </section>
 </template>
@@ -8,8 +8,6 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import * as data from "../data/data.json";
-// @ts-ignore
-import Croppa from "vue-croppa";
 
 @Options({
   props: {
@@ -17,34 +15,30 @@ import Croppa from "vue-croppa";
     title: String,
   },
   methods: {
-    imageValues: function (value: string) {
+    imageValue: function (value: string) {
       const direction =
         value === "x"
           ? this.transformedImage[0]?.banner.x
           : this.transformedImage[0]?.banner.y;
-      console.log(direction);
-      return typeof direction === "number" ? direction * 100 + "%" : "50%";
+      return typeof direction != undefined ? direction * 100 + "%" : "100%";
     },
   },
-  data() {
-    // @ts-ignore
-    console.log(this.imageValues("x"));
-    return {
-      styles: {
-        // @ts-ignore
-        "object-position": `${this.imageValues("x")} ${this.imageValues("y")}`,
-      },
-    };
+  computed: {
+    styles() {
+      return {
+        "object-position": `${this.imageValue("x")} ${this.imageValue("y")}`,
+      };
+    },
   },
 })
 export default class EventGuestImage extends Vue {
-  croppa = Croppa;
   guest!: string;
   title!: string;
-  // @ts-ignore
-  img = typeof this.image === "string" && this.image.slice(36);
-  transformedImage = data.data.transformedImages.filter(
-    (images: any) => images.id.slice(1, images.id.length - 4) === this.img
+  img =
+    // @ts-ignore
+    typeof this.image === "string" && this.image.slice(this.image.length - 24);
+  transformedImage = data.data.transformedImages.filter((images: any) =>
+    images.id.includes(this.img)
   );
 }
 </script>

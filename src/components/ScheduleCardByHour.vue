@@ -13,11 +13,13 @@
           v-show="this.link?.length > 0"
         />
       </a>
-      <div
+      <img
         class="card-img-container"
+        :src="this.image"
+        :alt="title"
         :style="styles"
         @click="routeChoice(event)"
-      ></div>
+      />
     </div>
   </section>
 </template>
@@ -26,6 +28,7 @@
 import { Options, Vue } from "vue-class-component";
 import Button from "./Button.vue";
 import { routeChoice } from "../data/functions";
+import * as data from "../data/data.json";
 
 @Options({
   components: {
@@ -39,6 +42,22 @@ import { routeChoice } from "../data/functions";
     link: String,
     event: Object,
   },
+  methods: {
+    imageValue: function (value: string) {
+      const direction =
+        value === "x"
+          ? this.transformedImage[0]?.square.x
+          : this.transformedImage[0]?.square.y;
+      return typeof direction != undefined ? direction * 100 + "%" : "100%";
+    },
+  },
+  computed: {
+    styles() {
+      return {
+        "object-position": `${this.imageValue("x")} ${this.imageValue("y")}`,
+      };
+    },
+  },
 })
 export default class ScheduleCardByHour extends Vue {
   place!: string;
@@ -48,9 +67,12 @@ export default class ScheduleCardByHour extends Vue {
   link!: string;
   event!: object;
   routeChoice = routeChoice;
-  styles = {
-    "background-image": `url(${this.image})`,
-  };
+  img =
+    // @ts-ignore
+    typeof this.image === "string" && this.image.slice(this.image.length - 24);
+  transformedImage = data.data.transformedImages.filter((images: any) =>
+    images.id.includes(this.img)
+  );
 }
 </script>
 
@@ -105,12 +127,10 @@ h5 {
 }
 
 .card-img-container {
+  object-fit: cover;
   height: 50px;
   width: 50px;
   margin: 10px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 .round .card-img-container {

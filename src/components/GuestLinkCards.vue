@@ -1,19 +1,20 @@
 <template>
   <section class="guest-links-container">
-    <div :key="index" v-for="(guest, index) in guests">
-      <div
-        class="guest-link"
-        :style="{ 'background-image': `url(${getFormattedImage(guest._id)})` }"
+    <div :key="guest" v-for="guest in guests" class="guest-link-img-wrapper">
+      <img
+        :src="getFormattedImage(guest._id)"
+        :alt="guest.name"
         @click="sortGuestPath(guest)"
-      >
-        <span :id="guest._id">{{ guest.name }}</span>
-      </div>
+        class="guest-link"
+      />
+      <span :id="guest._id">{{ guest.name }}</span>
     </div>
   </section>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+//import * as data from "../data/data.json";
 // @ts-ignore
 import guests from "../data/guestData.js";
 
@@ -64,11 +65,35 @@ import guests from "../data/guestData.js";
         .filter((guest: { _id: string }) => guest._id === guestId)
         .map((guest: { image: any }) => guest.image);
     },
+    /*
+    imageValue: function (value: string) {
+      const direction =
+        value === "x"
+          ? this.transformedImage[0]?.banner.x
+          : this.transformedImage[0]?.banner.y;
+      return typeof direction != undefined ? direction * 100 + "%" : "100%";
+    },
+  },
+  computed: {
+    styles() {
+      return {
+        "object-position": `${this.imageValue("x")} ${this.imageValue("y")}`,
+      };
+    },
+  */
   },
 })
 export default class GuestLinkCards extends Vue {
   guests!: [];
   guestData = guests;
+  /*
+  img =
+    // @ts-ignore
+    typeof this.image === "string" && this.image.slice(this.image.length - 24);
+  transformedImage = data.data.transformedImages.filter((images: any) =>
+    images.id.includes(this.img)
+  );
+  */
 }
 </script>
 
@@ -80,19 +105,21 @@ export default class GuestLinkCards extends Vue {
   cursor: pointer;
 }
 
-.guest-link {
-  width: 100%;
-  aspect-ratio: 2.5 / 1;
-  background-repeat: no-repeat;
-  background-position-x: 50%;
-  background-position-y: 30%;
-  background-size: cover;
-  margin: 0 0 5px;
-  color: white;
-  text-transform: uppercase;
+.guest-link-img-wrapper {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
+}
+
+.guest-link {
+  aspect-ratio: 2.5 / 1;
+  object-fit: cover;
+  object-position: 100% 40%;
+  height: 130px;
+  width: 100%;
+  margin: 0 0 5px;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
@@ -106,9 +133,12 @@ export default class GuestLinkCards extends Vue {
   filter: contrast(1.1);
 }
 
-.guest-link :first-child,
-.round .guest-link :first-child {
+.guest-link-img-wrapper span,
+.guest-link-img-wrapper span {
+  position: absolute;
+  z-index: 1;
   padding: 10px;
+  color: white;
   filter: drop-shadow(0 0 1px #000000);
 }
 </style>
