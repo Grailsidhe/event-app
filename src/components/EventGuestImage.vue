@@ -1,6 +1,6 @@
 <template>
   <section class="eg-img-container">
-    <img :src="image" alt="" :style="styles" />
+    <img :src="image" :alt="guest.name" :style="styles" />
     <span>{{ title }}</span>
   </section>
 </template>
@@ -51,7 +51,6 @@ export default class EventGuestImage extends Vue {
   justify-content: flex-start;
   align-items: flex-end;
   font-size: 1.6em;
-  text-transform: uppercase;
   position: relative;
 }
 
