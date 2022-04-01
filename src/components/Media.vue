@@ -43,7 +43,7 @@ import { useRoute } from "vue-router";
       }
       if (link && link.includes("channel")) {
         const code = this.youtube?.slice(34, 56);
-        return `http://www.youtube.com/embed/videoseries?list=UU${code}`;
+        return `https://www.youtube.com/embed/videoseries?list=UU${code}`;
       }
     },
   },

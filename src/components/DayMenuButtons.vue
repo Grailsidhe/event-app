@@ -195,11 +195,12 @@ export default class DayMenuButtons extends Vue {
     margin-top: 0;
     width: 100%;
     font-size: 0.9em;
+    padding: 0;
   }
 
   .day-menu > nav {
-    width: 35%;
-    margin: 10px;
+    width: 40%;
+    margin: 0;
   }
 
   .btn,
@@ -209,8 +210,13 @@ export default class DayMenuButtons extends Vue {
   .day-menu > nav > button {
     min-width: fit-content;
     width: 100%;
-    padding: 10px 5px;
-    margin: auto 0;
+    padding: 10px 7px;
+    margin: 10px 5px;
+  }
+
+  .chevron-left,
+  .chevron-right {
+    width: 40px;
   }
 }
 </style>

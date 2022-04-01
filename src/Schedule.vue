@@ -5,11 +5,15 @@
         :guestTypes="guestType"
         :programs="programs"
         :route="{ name: 'main', type: 'type', id: 'id' }"
-        text="Accueil"
+        :text="this.$store.state.language === 'fr' ? 'Accueil' : 'Home'"
         :showSelect="false"
       />
       <MainHeaderSortMenu
-        :category="categorySchedule"
+        :category="
+          this.store.state.language === 'fr'
+            ? ['par lieu', 'par heure']
+            : ['by place', 'by hour']
+        "
         :selectItems="tags"
         route="schedule"
       />
@@ -167,7 +171,6 @@ import * as data from "./data/data.json";
   },
 })
 export default class ScheduleByPlace extends Vue {
-  categorySchedule = ["par lieu", "par heure"];
   store = useStore();
   sortedDays = sortedDays;
   searchFilter = searchFilter;

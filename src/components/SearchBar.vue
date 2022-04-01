@@ -2,7 +2,9 @@
   <section class="search-bar">
     <input
       type="text"
-      placeholder="recherche.."
+      :placeholder="
+        this.$store.state.language === 'fr' ? 'recherche...' : 'search...'
+      "
       @input="handleSearch($event.target.value)"
     />
     <svg

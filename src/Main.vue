@@ -5,7 +5,9 @@
         :guestTypes="guestType"
         :programs="programs"
         :route="{ name: 'schedule', type: 'type', id: 'id' }"
-        text="programmation"
+        :text="
+          this.$store.state.language === 'fr' ? 'Programmation' : 'Schedule'
+        "
         :stateMenuFilter="this.sortedDays()[0]"
         :showSelect="true"
       />
@@ -93,7 +95,9 @@ import { useStore } from "./store";
       const guest = this.store.state.selectFilters?.guestType
         ? this.store.state.selectFilters?.guestType
         : this.guestType[0];
-      return [guest, "a - z", "par jour"];
+      const en = "by day";
+      const fr = "par jour";
+      return [guest, "a - z", this.$store.state.language === "fr" ? fr : en];
     },
   },
 })

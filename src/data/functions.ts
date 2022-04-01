@@ -68,7 +68,7 @@ export function routeChoice(this: any, item: GuestEvent) {
     );
   };
   // if it's 'event'
-  if (item.route === "event") {
+  if (item.route === "event" && item.musicGroupsIds) {
     return (
       this.$router.push({ name: "event", params: { id: `${item.id}` } }),
       clearStore

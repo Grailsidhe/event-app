@@ -1,6 +1,11 @@
 <template>
   <section class="eg-img-container">
-    <img :src="image" :alt="guest.name" :style="styles" />
+    <img
+      :src="image"
+      :alt="guest?.name"
+      :style="styles"
+      v-show="!this.image.includes(undefined)"
+    />
     <span>{{ title }}</span>
   </section>
 </template>

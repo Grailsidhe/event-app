@@ -220,8 +220,7 @@ export default class ScheduleDayMenuButtons extends Vue {
     align-items: center;
     min-width: fit-content;
     margin: -10px auto 10px;
-    width: fit-content;
-    padding: 0 30px;
+    width: 100%;
   }
 
   .day-menu > nav {

@@ -17,7 +17,7 @@
     <Button
       :link="link"
       padd="10px 20px"
-      text="Billetterie"
+      :text="this.$store.state.language === 'fr' ? 'Billetterie' : 'Tickets'"
       mainColor="var(--colorPrimary)"
       hoverColor="var(--colorPrimaryDark)"
       v-show="this.link"

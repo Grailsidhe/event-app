@@ -9,6 +9,7 @@
       :src="this.image"
       :alt="title"
       :style="styles"
+      v-show="!this.image.includes(undefined)"
     />
   </section>
 </template>

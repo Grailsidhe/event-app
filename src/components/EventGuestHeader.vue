@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'main' }">
         <Button
           :link="link"
-          text="accueil"
+          :text="this.$store.state.language === 'fr' ? 'accueil' : 'home'"
           mainColor="var(--colorPrimary)"
           hoverColor="var(--colorPrimaryDark)"
         />
@@ -15,7 +15,9 @@
       >
         <Button
           :link="link"
-          text="programmation"
+          :text="
+            this.$store.state.language === 'fr' ? 'Programmation' : 'Schedule'
+          "
           mainColor="var(--colorPrimary)"
           hoverColor="var(--colorPrimaryDark)"
           :stateMenuNumber="stateMenuNumber"

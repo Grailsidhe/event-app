@@ -4,7 +4,10 @@
 
     <section class="title-info">
       <div>
-        <ButtonShare text="partager" @click="togglePopup()" />
+        <ButtonShare
+          :text="this.$store.state.language === 'fr' ? 'partager' : 'share'"
+          @click="togglePopup()"
+        />
         <TagContainer :text="tagText" />
       </div>
 

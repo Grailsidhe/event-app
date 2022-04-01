@@ -5,7 +5,11 @@
       class="left-section"
     >
       <Select
-        title="Type d'invité"
+        :title="
+          this.$store.state.language === 'fr'
+            ? `Type d'invité `
+            : 'Type of guest'
+        "
         :selectItems="guestTypes"
         v-show="showSelect"
       />
@@ -26,7 +30,10 @@
     </div>
     <div class="right-section">
       <Language />
-      <Select title="Programme" :selectItems="programs" />
+      <Select
+        :title="this.$store.state.language === 'fr' ? 'Programme' : 'Program'"
+        :selectItems="programs"
+      />
     </div>
   </section>
 </template>

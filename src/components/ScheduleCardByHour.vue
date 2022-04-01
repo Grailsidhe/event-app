@@ -7,7 +7,9 @@
     <div class="card-button-img-container">
       <a :href="link" target="_new">
         <Button
-          text="billetterie"
+          :text="
+            this.$store.state.language === 'fr' ? 'Billetterie' : 'Tickets'
+          "
           mainColor="var(--colorAccent)"
           hoverColor="var(--colorPrimary)"
           v-show="this.link?.length > 0"
@@ -19,6 +21,7 @@
         :alt="title"
         :style="styles"
         @click="routeChoice(event)"
+        v-show="!this.image.includes(undefined)"
       />
     </div>
   </section>
