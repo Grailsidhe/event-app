@@ -1,5 +1,7 @@
 # Event SPA
 
+Live preview: https://chapito-ct.github.io/
+
 A single-page web application that displays event information (concerts, exhibitions, festivals, etc.).
 The app features a guest gallery, guest and event feature pages and a schedule.
 It comes in two interchangeable styles and is responsive.

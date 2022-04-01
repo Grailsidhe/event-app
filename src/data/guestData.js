@@ -30,16 +30,19 @@ const guestEvents = (guestId) => {
 const guest = data.default.data.groups.map(item => {
     const tagNames = data.default.data.genres.filter(genre => item.genres?.includes(genre._id))
     const imagesLinkName = data.default.data.applicationConfig.fbNotifTopic
+    const firstEvent = guestEvents(item._id).length > 1 ? 
+    guestEvents(item._id).sort((a, b) => new Date(a.day) - new Date(b.day))
+     : guestEvents(item._id)
     return ({ 
         ...item,
         image: `https://${imagesLinkName}.chapi.to/api/files/${item.image?.slice(1, item.image.length - 4)}`,
         events: guestEvents(item._id),
-        place: guestEvents(item._id)[0],
+        place: firstEvent[0],
         tags: tagNames.map(tag => tag.name).sort(),
         website: item.website || "",
         id: item._id,
-        day: guestEvents(item._id)[0]?.day,
-        hour: guestEvents(item._id)[0]?.hour,
+        day: firstEvent[0]?.day,
+        hour: firstEvent[0]?.hour,
         route: 'guest',
         title: item.name,
         showStartDate: [...new Set(guestEvents(item._id).map(event => event.showStartDate).flat())]

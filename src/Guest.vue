@@ -121,7 +121,10 @@ export default class Guest extends Vue {
   description?: string = this.guest.description;
   country?: string = this.guest.origin;
   tags: string[] = this.guest.tags;
-  events: object[] = this.guest.events;
+  events: object[] = this.guest.events.sort(
+    // @ts-ignore
+    (a: any, b: any) => new Date(a.day) - new Date(b.day)
+  );
 }
 </script>
 
