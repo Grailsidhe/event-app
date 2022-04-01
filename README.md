@@ -1,6 +1,6 @@
-# Event display app
+# Event SPA
 
-A web application that displays event (concerts, exhibitions, festivals, etc.).
+A single-page web application that displays event information (concerts, exhibitions, festivals, etc.).
 The app features a guest gallery, guest and event feature pages and a schedule.
 It comes in two interchangeable styles and is responsive.
 
@@ -10,7 +10,7 @@ Features a guest gallery with various filters (select, search) depending on even
 
 ### Event profiles
 
-Displays (if provided) photo, media, social media buttons, description, contact information, event schedule with ticket purchase button, event's guests, share on social media button, copyright information.
+Displays (if provided) photo, media, social media buttons, guests (if any), description, contact information, event schedule with ticket purchase button, event's guests, share on social media button, copyright information, etc.
 
 The display varies depending on availability of media elements and/or guests.
 
@@ -18,7 +18,7 @@ The display varies depending on availability of media elements and/or guests.
 
 Displays (if provided) photo, media, social media buttons, description, contact information, events schedules with ticket purchase button, share on social media button, copyright information.
 
-The display varies depending on availability of media elements and/or guests.
+The display varies depending on availability of media elements.
 
 ### Schedule
 
@@ -28,7 +28,7 @@ Displays events by choice of location or hour, and filters them according to the
 
 ## About:
 
-This was my second internship project, as I learned VueJs and practiced Typescript. The information is fetched from JSON files and the displays change depending on what's available. I also created a component library to aid scaling in the future. The project is intended for clients for the company I created it for and only here as a portfolio item. I don't hold copyright over the images or information displayed, I only wrote the code.
+This was my second internship project, as I learned VueJs and practiced Typescript. The information is dynamically fetched from JSON files. I also created a component library to aid scaling in the future. The project is intended for clients for the company I created it for and only here as a portfolio item. I don't hold copyright over the images or information displayed, I only wrote the code.
 
 ### Tech:
 
