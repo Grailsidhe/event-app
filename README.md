@@ -1,6 +1,7 @@
 # Event SPA
 
 Live preview: https://chapito-ct.github.io/
+Product website: https://chapi.to/grille-de-programmation
 
 A single-page web application that displays event information (concerts, exhibitions, festivals, etc.).
 The app features a guest gallery, guest and event feature pages and a schedule.
